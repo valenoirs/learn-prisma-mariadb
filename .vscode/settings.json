@@ -1,0 +1,30 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "192.168.10.12",
+            "port": 3306,
+            "driver": "MariaDB",
+            "name": "samrat_sqltools",
+            "database": "samrat_db_dev",
+            "username": "samrat",
+            "password": "samratrs_86"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "192.168.10.12",
+            "port": 3306,
+            "driver": "MariaDB",
+            "name": "Prisma",
+            "database": "prisma_dev",
+            "username": "samrat",
+            "password": "samratrs_86"
+        }
+    ]
+}

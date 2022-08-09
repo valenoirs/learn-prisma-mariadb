@@ -1,0 +1,85 @@
+# Prisma
+
+## CRUD
+// Create new document
+prisma.<table>.create({data : {<variable>: <value>}})
+
+// Delete new document
+prisma.<table>.deleteMany()
+
+// Find all documents
+prisma.<table>.findMany()
+
+## Relationship
+// One to Many
+model User {
+    id String @id @default(uuid())
+    posts [] @relation("UserPost)
+}
+
+model Post {
+    id String @id @default(uuid())
+    user User @relation("UserPost", fields: [userId], references: [id])
+    userId String
+}
+
+// Many to Many
+model Post {
+    id String @id @default(uuid())
+    categories Category[] 
+}
+
+model Category {
+    id String @id @default(uuid())
+    posts Post[]
+}
+
+// One to One
+model User {
+    id String @id @default(uuid())
+    UserPreference UserPreference? @relation("UserPreference")
+}
+
+model UserPreference {
+    id String @id @default(uuid())
+    user User @relation("UserPreference", fields: [userId], references: [id])
+    userId String @unique
+}
+
+## Log
+add log on : PrismaClient({log: ["query" || "error" || "info" || "warn"]}) 
+
+// Atribute
+Field-Level Atribute -> <variable> @unique
+Block-Level Atribute -> @@unique([<variable>, <variable>, ...])
+
+## AND || OR || NOT Filtering in Prisma findMany()
+
+// AND
+await prisma.<table>.findMany({
+    where: {
+        AND : [
+            Condition1,
+            Condition2
+        ]
+    }
+})
+
+// OR
+await prisma.<table>.findMany({
+    where: {
+        OR : [
+            Condition1,
+            Condition2
+        ]
+    }
+})
+
+// NOT
+await prisma.<table>.findMany({
+    where: {
+        NOT : [
+            Condition1,
+        ]
+    }
+})
